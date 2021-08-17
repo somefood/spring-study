@@ -8,7 +8,7 @@ import spring.MemberDao;
 import spring.MemberPrinter;
 
 @Configuration
-@Import(AppConf2.class)
+@Import({AppConf1.class, AppConf2.class})
 public class AppConfImport {
 	
 	@Bean
