@@ -1,0 +1,16 @@
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+compileJava.options.encoding = "UTF-8"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly 'org.springframework:spring-context:5.0.2.RELEASE'
+    compileOnly 'org.springframework:spring-jdbc:5.0.2.RELEASE'
+    compileOnly 'org.apache.tomcat:tomcat-jdbc:8.5.27'
+    compileOnly 'mysql:mysql-connector-java:5.1.45'
+}
