@@ -28,7 +28,7 @@ public class MemberDao {
     
     public Member selectByEmail(String email) {
     	List<Member> results = jdbcTemplate.query(
-	        "selec * from MEMBER where EMAIL = ?",
+	        "select * from spring5fs.MEMBER where EMAIL = ?",
 	        new RowMapper<Member>() {
 	            @Override
 	            public Member mapRow(ResultSet rs, int rowNum)
@@ -52,7 +52,7 @@ public class MemberDao {
             @Override
             public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
                 PreparedStatement pstmt = con.prepareStatement(
-                "insert into MEMBER (EMAIL, PASSWORD, NAME, REGDATE)" + "values (?, ?, ?, ?)",
+                "insert into spring5fs.MEMBER (EMAIL, PASSWORD, NAME, REGDATE)" + "values (?, ?, ?, ?)",
                 new String[] {"ID"});
                 pstmt.setString(1,  member.getEmail());
                 pstmt.setString(2,  member.getPassword());
@@ -67,12 +67,12 @@ public class MemberDao {
     
     public void update(Member member) {
     	jdbcTemplate.update(
-	        "update MEMBER set NAME = ?, PASSWORD = ? where EMAIL = ?",
+	        "update spring5fs.MEMBER set NAME = ?, PASSWORD = ? where EMAIL = ?",
 	        member.getName(), member.getPassword(), member.getEmail());
     }
     
     public List<Member> selectAll() {
-    	List<Member> results = jdbcTemplate.query("select * from MEMBER",
+    	List<Member> results = jdbcTemplate.query("select * from spring5fs.MEMBER",
     	        new RowMapper<Member>() {
     	            @Override
     	            public Member mapRow(ResultSet rs, int rowNum)
@@ -91,7 +91,7 @@ public class MemberDao {
     
     public int count() {
         Integer count = jdbcTemplate.queryForObject(
-            "select count(*) from MEMBER", Integer.class);
+                "select count(*) from spring5fs.MEMBER", Integer.class);
         return count;
     }
 }

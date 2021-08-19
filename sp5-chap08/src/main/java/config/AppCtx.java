@@ -19,11 +19,11 @@ public class AppCtx {
     public DataSource dataSource() {
     	DataSource ds = new DataSource();
     	ds.setDriverClassName("com.mysql.jdbc.Driver");
-    	ds.setUrl("jdbc:mysql://localhost/spring5fs?useUnicode=true&character_set_server=utf8mb4");
+    	ds.setUrl("jdbc:mysql://localhost/spring5fs?serverTimezone=Asia/Seoul&useSSL=false&useUnicode=true&character_set_server=utf8mb4");
     	ds.setUsername("spring5");
     	ds.setPassword("spring5");
-    	ds.setInitialSize(2);
-    	ds.setMaxActive(10);
+//    	ds.setInitialSize(2);
+//    	ds.setMaxActive(10);
     	ds.setTestWhileIdle(true);
     	ds.setMinEvictableIdleTimeMillis(1000 * 60 * 3);
     	ds.setTimeBetweenEvictionRunsMillis(1000 * 10);
