@@ -3,13 +3,10 @@ package com.somefood.board.repository;
 import com.somefood.board.domain.Board;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Repository
-public class BoardRepositoryImpl implements BoardRepository {
+public class MemoryBoardRepository implements BoardRepository {
 
     private static final Map<Long, Board> boardMap = new HashMap<>();
     private static long sequence = 0L;
@@ -22,12 +19,17 @@ public class BoardRepositoryImpl implements BoardRepository {
     }
 
     @Override
-    public Board findById(Long id) {
-        return BoardRepositoryImpl.boardMap.get(id);
+    public Optional<Board> findById(Long id) {
+        return Optional.ofNullable(boardMap.get(id));
     }
 
     @Override
     public List<Board> findAll() {
         return new ArrayList<>(boardMap.values());
+    }
+
+    @Override
+    public void remove(Long id) {
+        boardMap.remove(id);
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.Optional;
 
 //@RestController("/board")
 @Controller
@@ -19,9 +20,9 @@ public class BoardController {
     private final BoardRepository boardRepository;
 
     @GetMapping("/{boardId}")
-    public String board(@PathVariable long boardId, Model model) {
-        Board board = boardRepository.findById(boardId);
-        model.addAttribute("board", board);
+    public String board(@PathVariable Long boardId, Model model) {
+        Optional<Board> board = boardRepository.findById(boardId);
+        board.ifPresent(value -> model.addAttribute("board", value));
         return "board/item";
     }
 
@@ -34,7 +35,17 @@ public class BoardController {
     }
 
     @PostMapping
-    public void createBoard() {}
+    public String createBoard(Board board) {
+        Board saved = boardRepository.save(board);
+        return "redirect:board/";
+    }
+
+    @DeleteMapping("/{boardId}")
+    @ResponseBody
+    public String deleteBoard(@PathVariable Long boardId) {
+        boardRepository.remove(boardId);
+        return "ok";
+    }
 
     @PostConstruct
     public void init() {
