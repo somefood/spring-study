@@ -29,7 +29,6 @@ public class BoardController {
     @GetMapping
     public String boards(Model model) {
         List<Board> boards = boardRepository.findAll();
-        System.out.println(boards);
         model.addAttribute("boards", boards);
         return "board/items";
     }
