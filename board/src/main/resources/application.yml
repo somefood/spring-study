@@ -1,4 +1,14 @@
-server:
-  servlet:
-    session:
-      tracking-modes: cookie
+spring:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    generate-ddl: true
+
+
+handlebars:
+  suffix: .html
