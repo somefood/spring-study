@@ -1,6 +1,7 @@
 package com.somefood.board.repository;
 
 import com.somefood.board.domain.Board;
+import com.somefood.board.repository.board.BoardRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
@@ -29,7 +30,12 @@ public class MemoryBoardRepository implements BoardRepository {
     }
 
     @Override
-    public void remove(Long id) {
-        boardMap.remove(id);
+    public boolean remove(Long id) {
+        if (boardMap.containsKey(id)) {
+            boardMap.remove(id);
+            return true;
+        } else {
+            return false;
+        }
     }
 }

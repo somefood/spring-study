@@ -1,4 +1,4 @@
-package com.somefood.board.repository;
+package com.somefood.board.repository.board;
 
 import com.somefood.board.domain.Board;
 import lombok.RequiredArgsConstructor;
@@ -39,8 +39,13 @@ public class JpaBoardRepository implements BoardRepository {
 
     @Override
     @Transactional
-    public void remove(Long id) {
+    public boolean remove(Long id) {
         Optional<Board> board = findById(id);
-        board.ifPresent(value -> em.remove(value));
+        if (board.isPresent()) {
+            em.remove(id);
+            return true;
+        } else {
+            return false;
+        }
     }
 }

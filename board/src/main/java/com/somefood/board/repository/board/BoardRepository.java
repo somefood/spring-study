@@ -1,4 +1,4 @@
-package com.somefood.board.repository;
+package com.somefood.board.repository.board;
 
 import com.somefood.board.domain.Board;
 import org.springframework.stereotype.Repository;
@@ -10,5 +10,5 @@ public interface BoardRepository {
     public Board save(Board board);
     public Optional<Board> findById(Long id);
     public List<Board> findAll();
-    public void remove(Long id);
+    public boolean remove(Long id);
 }

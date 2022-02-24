@@ -4,16 +4,51 @@
       layout:decorate="layout/default_layout">>
 
 <th:block layout:fragment="content">
+    <div class="row">
+        <div class="col" id="pc">
+            <table class="table board-table">
+                <thead>
+                <tr>
+                    <th scope="col" style="width: 55%;">제목</th>
+                    <th scope="col" style="width: 15%;">글쓴이</th>
+                    <th scope="col" style="width: 10%;">추천</th>
+                    <th scope="col" style="width: 20%;">날짜</th>
+                </tr>
+                </thead>
+                <tbody>
 
-    <ul class="list-group">
-        <li th:each="board: ${boards}" class="list-group-item">
-            <div>
-                <a href="" th:href="@{/board/{itemId}(itemId=${board.id})}" th:text="${board.title}"></a>
-            </div>
-            <div>
-                <a href="" th:href="@{/board/{itemId}(itemId=${board.id})}" th:text="${board.content}"></a>
-            </div>
-        </li>
-    </ul>
+                <tr th:each="board: ${boards}">
+                    <td><a class="text-dark text-truncate" href="#" th:href="@{/board/{itemId}(itemId=${board.id})}" th:text="${board.title}">새내기 중 남산 가보신분 계신가요</a>(2)</td>
+                    <td class="author" th:text="author">미소여우</td>
+                    <td class="text-primary voteNum">0</td>
+                    <td class="time" th:text="${board.createdDate}">2020년 7월 7일</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col p-0" id="mobile">
+            <ul class="list-group">
+
+                <li th:each="board: ${boards}" class="list-group-item p-2 board-item">
+                    <div style="width:100%;">
+                        <div class="text-truncate">
+                            <a href="#" th:href="@{/board/{itemId}(itemId=${board.id})}" th:text="${board.title}" class="text-dark font-weight-bold" style="font-size: 13px;">새내기 중 남산 가보신분 계신가요</a>
+                        </div>
+                        <div class="d-flex">
+                            <div class="flex-fill">
+                                <span class="text-primary"><i class="fa fa-thumbs-up" aria-hidden="true"></i> 0</span>
+                                <span th:text="${board.createdDate}">2020년 7월 7일</span>
+                            </div>
+                            <div class="flex-fill">
+                                <div class="d-flex justify-content-end" th:text="author">
+                                    미소여우
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
 </th:block>
 </html>
