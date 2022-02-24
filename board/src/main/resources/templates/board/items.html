@@ -5,19 +5,6 @@
 
 <th:block layout:fragment="content">
 
-    <hr class="my-4">
-
-    <div class="row">
-        <div class="col">
-            <form th:action="@{/logout}" method="post">
-                <button class="w-100 btn btn-dark btn-lg" onclick="location.href='items.html'" type="submit">
-                    로그아웃
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <hr class="my-4">
     <ul class="list-group">
         <li th:each="board: ${boards}" class="list-group-item">
             <div>
