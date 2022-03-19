@@ -54,12 +54,20 @@ public class Config extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/users").permitAll()
+                .antMatchers("/users/**").permitAll()
                 .anyRequest().authenticated()
         .and()
                 .formLogin()
+                .loginPage("/users/login")
+                .loginProcessingUrl("/users/login_proc")
+                .defaultSuccessUrl("/")
                 .authenticationDetailsSource(authenticationDetailsSource)
                 .successHandler(customAuthenticationSuccessHandler)
+        ;
+        http
+                .logout()
+                .logoutUrl("/users/logout")
+                .logoutSuccessUrl("/")
         ;
     }
 }

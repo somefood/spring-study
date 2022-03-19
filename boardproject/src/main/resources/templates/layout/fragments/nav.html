@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<nav id="nav-top" class="navbar navbar-expand-xl navbar-light fixed-top " th:fragment="navFragment">
+        <span class="navbar-brand mx-5 mb-0 font-weight-bold">
+            <a class="header-title" href="/" th:href="@{/}">Spring Board</a>
+        </span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item mx-1 btn">
+                <a class="nav-link header-text" href="/" th:href="@{/}">Home</a>
+            </li>
+            <li class="nav-item mx-1 btn">
+                <a class="nav-link header-text" href="/about/" th:href="@{/about}">About</a>
+            </li>
+            <li class="nav-item mx-1 btn">
+                <a class="nav-link header-text" href="/board/" th:href="@{/board}">게시판</a>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav ml-5 mr-5">
+            <li class="nav-item dropdown mx-1 btn">
+                <th:block sec:authorize="isAuthenticated()">
+                    <a class="nav-link dropdown-toggle header-text" href="#" data-toggle="dropdown">
+                        <i class="fas fa-user"></i>&ensp;<span sec:authentication="principal.username"></span>님
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" th:href="@{/mypage}">마이페이지</a>
+                        <a class="dropdown-item" th:href="@{/}">패스워드 변경</a>
+                        <a class="dropdown-item" th:href="@{/users/logout}">Logout</a>
+                        <a class="dropdown-item" th:href="@{/}">Change Password</a>
+                    </div>
+                </th:block>
+
+                <th:block sec:authorize="isAnonymous()">
+                    <a class="nav-link dropdown-toggle header-text" href="#" data-toggle="dropdown">
+                        <i class="fas fa-user"></i>&ensp;로그인 해주세요&ensp;
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" th:href="@{/users/login}">로그인</a>
+                        <a class="dropdown-item" th:href="@{/}">아이디 찾기</a>
+                        <a class="dropdown-item" th:href="@{/}">패스워드 찾기</a>
+                        <a class="dropdown-item" th:href="@{/users}">회원가입</a>
+                    </div>
+                </th:block>
+            </li>
+        </ul>
+    </div>
+</nav>
+</html>
