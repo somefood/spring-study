@@ -2,22 +2,22 @@ package com.somefood.boardproject.controller;
 
 import com.somefood.boardproject.domain.*;
 import com.somefood.boardproject.repository.UserRepository;
-import com.somefood.boardproject.service.ArticleService;
 import com.somefood.boardproject.service.BoardService;
+import com.somefood.boardproject.service.CategoryService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 
+@Transactional
 @RequiredArgsConstructor
 @Component
 public class InitController {
 
     private final PasswordEncoder passwordEncoder;
-    private final ArticleService articleService;
+    private final CategoryService categoryService;
     private final BoardService boardService;
     private final UserRepository userRepository;
 
@@ -37,19 +37,19 @@ public class InitController {
         userRepository.save(account1);
         userRepository.save(account2);
 
-        Board board1 = Board.builder().type(BoardType.FREE).build();
-        Board board2 = Board.builder().type(BoardType.NOTICE).build();
-        Board board3 = Board.builder().type(BoardType.QUESTION).build();
-        Article article1 = Article.builder().title("하이1").content("바이1").board(board1).build();
-        Article article2 = Article.builder().title("하이2").content("바이2").board(board2).build();
-        Article article3 = Article.builder().title("하이3").content("바이3").board(board3).build();
+        Category category1 = Category.builder().type(CategoryType.FREE).build();
+        Category category2 = Category.builder().type(CategoryType.NOTICE).build();
+        Category category3 = Category.builder().type(CategoryType.QUESTION).build();
+        Board board1 = Board.builder().title("하이1").content("바이1").category(category1).account(account1).build();
+        Board board2 = Board.builder().title("하이2").content("바이2").category(category2).account(account1).build();
+        Board board3 = Board.builder().title("하이3").content("바이3").category(category3).account(account2).build();
 
+        categoryService.createCategory(category1);
+        categoryService.createCategory(category2);
+        categoryService.createCategory(category3);
         boardService.createBoard(board1);
         boardService.createBoard(board2);
         boardService.createBoard(board3);
-        articleService.createArticle(article1);
-        articleService.createArticle(article2);
-        articleService.createArticle(article3);
     }
 
     private void createAccount(Account account1, String user, String ROLE_USER) {

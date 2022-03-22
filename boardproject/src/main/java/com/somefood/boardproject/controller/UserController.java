@@ -1,7 +1,7 @@
 package com.somefood.boardproject.controller;
 
 import com.somefood.boardproject.domain.Account;
-import com.somefood.boardproject.domain.AccountDto;
+import com.somefood.boardproject.global.dto.AccountDto;
 import com.somefood.boardproject.domain.RoleType;
 import com.somefood.boardproject.service.UserService;
 import lombok.RequiredArgsConstructor;

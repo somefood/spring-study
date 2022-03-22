@@ -1,4 +1,4 @@
-package com.somefood.boardproject.domain;
+package com.somefood.boardproject.global.dto;
 
 import lombok.Data;
 

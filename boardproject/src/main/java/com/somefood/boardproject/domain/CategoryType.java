@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum BoardType {
+public enum CategoryType {
 
     NOTICE("공지"),
     QUESTION("질문"),

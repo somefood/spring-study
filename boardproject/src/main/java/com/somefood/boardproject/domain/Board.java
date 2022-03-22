@@ -1,32 +1,35 @@
 package com.somefood.boardproject.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
-@Entity
 @NoArgsConstructor
-@AllArgsConstructor
-public class Board {
+@Entity
+public class Board extends BaseEntityTime {
 
     @Id
     @GeneratedValue
     private Long id;
+    private String title;
+    private String content;
 
-    @Enumerated(EnumType.STRING)
-    private BoardType type;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private Category category;
 
-    @OneToMany(mappedBy = "board")
-    List<Article> articles = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "account_id")
+    private Account account;
 
     @Builder
-    public Board(BoardType type) {
-        this.type = type;
+    public Board(String title, String content, Category category, Account account) {
+        this.title = title;
+        this.content = content;
+        this.category = category;
+        this.account = account;
     }
 }
