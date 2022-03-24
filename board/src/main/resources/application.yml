@@ -6,14 +6,10 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     generate-ddl: true
 
   datasource:
     driver-class-name: org.h2.Driver  #h2 드라이버 설정
     url: jdbc:h2:tcp://localhost/~/test  #접속 URL
     username: sa  # 사용자 이름 (로그인 시 사용)
-
-
-handlebars:
-  suffix: .html

@@ -1,5 +1,6 @@
-package com.somefood.board.domain;
+package com.somefood.board.domain.category;
 
+import com.somefood.board.domain.board.Board;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,7 +16,8 @@ public class Category {
     @Column(name = "category_id")
     private Long Id;
 
-    private String name;
+    @Enumerated(EnumType.STRING)
+    private CategoryType type;
 
     @OneToMany(mappedBy = "category")
     private List<Board> boards = new ArrayList<>();

@@ -1,21 +1,18 @@
-package com.somefood.board.controller;
+package com.somefood.board.web.controller;
 
-import com.somefood.board.domain.Board;
-import com.somefood.board.domain.Category;
+import com.somefood.board.domain.board.Board;
 import com.somefood.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Optional;
 
-//@RestController("/board")
-@Controller
-@RequestMapping("/board")
 @RequiredArgsConstructor
+@RequestMapping("/board")
+@Controller
 public class BoardController {
 
     private final BoardService boardService;
@@ -36,7 +33,7 @@ public class BoardController {
 
     @PostMapping
     public String boardAdd(Board board) {
-        Board saved = boardService.addBoard(board);
+        Board saved = boardService.createBoard(board);
         return "redirect:board/";
     }
 
