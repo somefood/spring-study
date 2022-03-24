@@ -2,12 +2,15 @@ package com.somefood.board.domain.board;
 
 import com.somefood.board.domain.BaseTimeEntity;
 import com.somefood.board.domain.category.Category;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 
 @Getter
+@NoArgsConstructor
 @Table(name = "boards")
 @Entity
 public class Board extends BaseTimeEntity {
@@ -27,6 +30,13 @@ public class Board extends BaseTimeEntity {
         }
         this.category = category;
         category.getBoards().add(this);
+    }
+
+    @Builder
+    public Board(String title, String content, Category category) {
+        this.title = title;
+        this.content = content;
+        this.category = category;
     }
 }
 

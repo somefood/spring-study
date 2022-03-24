@@ -1,0 +1,14 @@
+﻿img {
+	border: 1px solid #ddd;
+  	border-radius: 4px;
+  	padding: 5px;
+  	width: 150px;
+}
+
+div.container {
+	padding-right: 50px;
+	padding-left: 50px;
+	margin-top: 40px;
+	margin-right: auto;
+	margin-left: auto;
+}

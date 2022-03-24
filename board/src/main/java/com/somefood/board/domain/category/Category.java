@@ -1,15 +1,18 @@
 package com.somefood.board.domain.category;
 
 import com.somefood.board.domain.board.Board;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@NoArgsConstructor
+@Getter
 @Entity
-@Getter @Setter
 public class Category {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,4 +24,9 @@ public class Category {
 
     @OneToMany(mappedBy = "category")
     private List<Board> boards = new ArrayList<>();
+
+    @Builder
+    public Category(CategoryType type) {
+        this.type = type;
+    }
 }

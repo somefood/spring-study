@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
+
+<nav id="nav-top" class="navbar navbar-expand-xl navbar-light fixed-top " th:fragment="navFragment">
+        <span class="navbar-brand mx-5 mb-0 font-weight-bold">
+            <a class="header-title" href="/" th:href="@{/}">Spring Board</a>
+        </span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item mx-1 btn">
+                <a class="nav-link header-text" href="/" th:href="@{/}">Home</a>
+            </li>
+            <li class="nav-item mx-1 btn">
+                <a class="nav-link header-text" href="/about/" th:href="@{/about}">About</a>
+            </li>
+            <li class="nav-item mx-1 btn">
+                <a class="nav-link header-text" href="/board/" th:href="@{/board}">게시판</a>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav ml-5 mr-5">
+            <li class="nav-item dropdown mx-1 btn">
+            </li>
+        </ul>
+    </div>
+</nav>
+</html>

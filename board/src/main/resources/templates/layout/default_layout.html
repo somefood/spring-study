@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<th:block th:replace="fragments/head :: headFragment"></th:block>
+<head th:replace="fragments/head :: headFragment"></head>
 <body>
-<th:block th:replace="fragments/header :: headerFragment('게시판')"></th:block>
+<nav th:replace="fragments/nav :: navFragment"></nav>
 <div class="container">
     <th:block layout:fragment="content">
     </th:block>
 </div>
-<th:block th:replace="fragments/footer :: footerFragment('by 홍석주')"></th:block>
+<footer th:replace="fragments/footer :: footerFragment"></footer>
 </body>
 </html>

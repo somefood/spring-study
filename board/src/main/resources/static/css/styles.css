@@ -19,7 +19,7 @@ menu,
 nav,
 section,
 main {
-    display:block;
+ display:block;
 }
 html,
 body,
@@ -64,79 +64,79 @@ fieldset,
 form,
 label,
 legend {
-    border:0 none
+ border:0 none
 }
 body {
-    position:relative;
-    min-width:320px;
-    margin:0 auto;
-    font-size:100%;
-    line-height:100%;
-    text-size-adjust:100%;
-    -webkit-text-size-adjust:100%;
-    word-break:keep-all
+ position:relative;
+ min-width:320px;
+ margin:0 auto;
+ font-size:100%;
+ line-height:100%;
+ text-size-adjust:100%;
+ -webkit-text-size-adjust:100%;
+ word-break:keep-all
 }
 header,
 h1 {
-    font-size:100%;
+ font-size:100%;
 }
 caption,
 legend {
-    display:none;
-    position:absolute;
-    width:0;
-    height:0;
-    font-size:0;
-    overflow:hidden;
-    visibility:hidden
+ display:none;
+ position:absolute;
+ width:0;
+ height:0;
+ font-size:0;
+ overflow:hidden;
+ visibility:hidden
 }
 img {
-    border:none;
-    vertical-align:top
+ border:none;
+ vertical-align:top
 }
 select,
 input {
-    vertical-align:top
+ vertical-align:top
 }
 hr {
-    display:none;
-    border:0 none
+ display:none;
+ border:0 none
 }
 ol,
 ul,
 ul li {
-    list-style:none
+ list-style:none
 }
 em {
-    font-style:normal
+ font-style:normal
 }
 menu li {
-    list-style:none
+ list-style:none
 }
 address {
-    display:inline;
-    font-style:normal
+ display:inline;
+ font-style:normal
 }
 button {
-    appearance:none;
-    cursor:pointer;
-    border:0px;
-    border-radius:0;
-    background-color:transparent
+ appearance:none;
+ cursor:pointer;
+ border:0px;
+ border-radius:0;
+ background-color:transparent
 }
 table {
-    border-collapse:collapse;
-    border-spacing:0
+ border-collapse:collapse;
+ border-spacing:0
 }
 input,
 textarea,
 keygen,
 select,
 button {
-    font-family:"SpoqaHanSans", "Noto Sans SC", "APPLE SD Gothic NEO", "sans-serif"
+ font-family:"SpoqaHanSans", "Noto Sans SC", "APPLE SD Gothic NEO", "sans-serif"
 }
 strong {
-    font-weight:normal
+ font-weight:normal
 }
 h1,
 h2,
@@ -146,33 +146,32 @@ h5,
 h6,
 strong,
 th {
-    font-weight:normal
+ font-weight:normal
 }
 a:link,
 a:visited,
 a:active,
 a:focus {
-    text-decoration:none
+ text-decoration:none
 }
 a:hover {
-    text-decoration:underline
+ text-decoration:underline
 }
 .hidden {
-    display:none
+ display:none
 }
 .clear {
-    clear:both
+ clear:both
 }
 .container.homepage {
     margin-top: 40px !important;
 }
 .container {
     min-height: 624px;
-    margin-top: 80px;
-    margin-right: auto;
-    margin-left: auto;
+	margin-top: 80px;
+	margin-right: auto;
+	margin-left: auto;
 }
-
 input[type="submit"] {
     border: 0px;
 }
@@ -295,7 +294,7 @@ footer.footer > .inner {
     position: relative;
 }
 
-/* store, board �덉씠�꾩썐*/
+/* store, board 레이아웃*/
 .board {
     padding: 29px 29px 0;
     border: 1px solid #ebecef;
@@ -440,22 +439,22 @@ footer.footer .language-copyrights small{
         overflow: hidden;
     }
     .main-header .main-search .icon {
-        left: -52px;
-        margin-top: -15.5px;
-        background-image: url(https://mp-seoul-image-develop-s3.mangoplate.com/web/resources/2018022864551sprites_desktop.png?fit=around|*:*&crop=*:*;*,*&output-format=png&output-quality=80);
-        background-position: -935px -620px;
-        width: 30px;
-        height: 31px;
+    left: -52px;
+    margin-top: -15.5px;
+    background-image: url(https://mp-seoul-image-develop-s3.mangoplate.com/web/resources/2018022864551sprites_desktop.png?fit=around|*:*&crop=*:*;*,*&output-format=png&output-quality=80);
+    background-position: -935px -620px;
+    width: 30px;
+    height: 31px;
     }
     .main-header .main-search .search-word {
-        right: 238px;
-        left: 85px;
+    right: 238px;
+    left: 85px;
     }
     .main-header .main-search input[type="text"] {
-        height: 50px;
-        font-size: 1.1rem;
-        line-height: 50px;
-        color: #000;
+    height: 50px;
+    font-size: 1.1rem;
+    line-height: 50px;
+    color: #000;
     }
     .main-header .main-search input[type="text"]:placeholder-shown {
         line-height: 50px;
