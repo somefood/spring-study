@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/default_layout">>
+
+<th:block layout:fragment="content">
+    <form action="" method="post" th:object="${board}">
+        <input type="text" th:field="*{title}" />
+        <textarea th:field="*{content}"></textarea>
+
+        <div>
+            <div>상품 종류</div>
+            <label class="col-form-label">카테고리:</label>
+            <select class="form-control" th:field="*{categoryType}">
+                <option th:each="cate : ${T(com.somefood.board.domain.category.CategoryType).values()}"
+                        th:value="${cate.name()}"
+                        th:text="${cate.name()}">
+                    val
+                </option>
+            </select>
+        </div>
+        <input type="submit" value="작성" />
+    </form>
+</th:block>
+</html>

@@ -1,8 +1,11 @@
 package com.somefood.board.web.controller;
 
 import com.somefood.board.domain.board.Board;
+import com.somefood.board.domain.category.Category;
 import com.somefood.board.service.BoardService;
+import com.somefood.board.web.dto.BoardDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/board")
 @Controller
@@ -31,10 +35,17 @@ public class BoardController {
         return "board/item";
     }
 
-    @PostMapping
-    public String boardAdd(Board board) {
-        Board saved = boardService.createBoard(board);
-        return "redirect:board/";
+    @GetMapping("/add-form")
+    public String boardCreate(Model model) {
+        model.addAttribute("board", new BoardDto());
+        return "board/addForm";
+    }
+
+    @PostMapping("/add-form")
+    public String boardAdd(@ModelAttribute BoardDto boardDto) {
+        log.info(boardDto.getTitle(), boardDto.getContent(), boardDto.getCategoryType());
+        Board saved = boardService.createBoard(boardDto);
+        return "redirect:/board";
     }
 
     @DeleteMapping("/{boardId}")

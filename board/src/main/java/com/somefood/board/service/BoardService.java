@@ -2,6 +2,9 @@ package com.somefood.board.service;
 
 import com.somefood.board.domain.board.Board;
 import com.somefood.board.domain.board.BoardRepository;
+import com.somefood.board.domain.category.Category;
+import com.somefood.board.domain.category.CategoryRepository;
+import com.somefood.board.web.dto.BoardDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,9 +18,18 @@ import java.util.Optional;
 public class BoardService {
 
     private final BoardRepository boardRepository;
+    private final CategoryRepository categoryRepository;
 
     @Transactional
     public Board createBoard(Board board) {
+        return boardRepository.save(board);
+    }
+
+    @Transactional
+    public Board createBoard(BoardDto boardDto) {
+        Board board = boardDto.toEntity();
+        Category category = categoryRepository.findByType(boardDto.getCategoryType());
+        board.setCategory(category);
         return boardRepository.save(board);
     }
 
