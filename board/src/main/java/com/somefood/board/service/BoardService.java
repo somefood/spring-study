@@ -4,6 +4,7 @@ import com.somefood.board.domain.board.Board;
 import com.somefood.board.domain.board.BoardRepository;
 import com.somefood.board.domain.category.Category;
 import com.somefood.board.domain.category.CategoryRepository;
+import com.somefood.board.domain.category.CategoryType;
 import com.somefood.board.web.dto.BoardDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ import java.util.Optional;
 public class BoardService {
 
     private final BoardRepository boardRepository;
+    private final CategoryService categoryService;
     private final CategoryRepository categoryRepository;
 
     @Transactional
@@ -37,8 +39,10 @@ public class BoardService {
         return boardRepository.findById(id);
     }
 
-    public List<Board> findBoardList() {
-        return boardRepository.findAll();
+    public List<Board> findBoardList(CategoryType categoryType) {
+        if (categoryType == null) return boardRepository.findAll();
+        Category category = categoryService.findCategoryByType(categoryType);
+        return boardRepository.findAllByCategory(category);
     }
 
     @Transactional

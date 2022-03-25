@@ -1,4 +1,4 @@
-package com.somefood.board.web.controller;
+package com.somefood.board.web;
 
 import com.somefood.board.domain.board.Board;
 import com.somefood.board.domain.board.BoardRepository;
@@ -24,9 +24,9 @@ public class DataInit {
         Category category2 = Category.builder().type(CategoryType.FREE).build();
         Category category3 = Category.builder().type(CategoryType.QUESTION).build();
 
-        BoardDto boardDto1 = BoardDto.builder().title("헬로1").content("헬로1").build();
-        BoardDto boardDto2 = BoardDto.builder().title("헬로2").content("헬로2").build();
-        BoardDto boardDto3 = BoardDto.builder().title("헬로3").content("헬로3").build();
+        BoardDto boardDto1 = BoardDto.builder().title("공지1").content("공지입니다.").build();
+        BoardDto boardDto2 = BoardDto.builder().title("자유1").content("자유게시판입니다.").build();
+        BoardDto boardDto3 = BoardDto.builder().title("질문1").content("질문게시판입니다.").build();
 
         Board board1 = boardDto1.toEntity();
         Board board2 = boardDto2.toEntity();
