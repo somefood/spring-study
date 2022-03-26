@@ -1,6 +1,6 @@
-package com.somefood.boardproject.domain;
+package com.somefood.boardproject.domain.account;
 
-import lombok.Data;
+import com.somefood.boardproject.domain.board.Board;
 import lombok.Getter;
 import lombok.Setter;
 

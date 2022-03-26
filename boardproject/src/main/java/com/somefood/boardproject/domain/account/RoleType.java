@@ -1,4 +1,4 @@
-package com.somefood.boardproject.domain;
+package com.somefood.boardproject.domain.account;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

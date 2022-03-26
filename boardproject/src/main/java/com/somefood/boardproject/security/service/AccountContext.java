@@ -1,6 +1,6 @@
 package com.somefood.boardproject.security.service;
 
-import com.somefood.boardproject.domain.Account;
+import com.somefood.boardproject.domain.account.Account;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 

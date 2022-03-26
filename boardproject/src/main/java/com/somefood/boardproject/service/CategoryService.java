@@ -1,18 +1,36 @@
 package com.somefood.boardproject.service;
 
-import com.somefood.boardproject.domain.Board;
-import com.somefood.boardproject.domain.Category;
+import com.somefood.boardproject.domain.category.Category;
+import com.somefood.boardproject.domain.category.CategoryRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-public interface CategoryService {
+@RequiredArgsConstructor
+@Transactional(readOnly = true)
+@Service
+public class CategoryService {
 
-    List<Category> findAll();
+    private final CategoryRepository categoryRepository;
 
-    Category getCategory(Long id);
+    public List<Category> findAll() {
+        return categoryRepository.findAll();
+    }
 
-    Category createCategory(Category category);
+    public Category getCategory(Long id) {
+        return categoryRepository.findById(id).orElse(null);
+    }
 
-    void removeCategory(Long id);
+    @Transactional
+    public Category createCategory(Category category) {
+        return categoryRepository.save(category);
+    }
+
+    @Transactional
+    public void removeCategory(Long id) {
+        Category category = categoryRepository.findById(id).get();
+        categoryRepository.delete(category);
+    }
 }

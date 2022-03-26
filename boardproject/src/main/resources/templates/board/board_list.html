@@ -4,10 +4,10 @@
       layout:decorate="~{layout/default_layout}">
 
 <th:block layout:fragment="content">
-    <li>
-        <ul th:each="board : ${boards}" th:object="${board}">
-            <a href="" th:href="@{|/board/${id}|}" th:text="${board.title}"></a>
-        </ul>
-    </li>
+    <ul class="category-list">
+        <li th:each="board : ${boards}" th:object="${board}">
+            <a href="" th:href="@{|/board/*{id}|}" th:text="${board.title}"></a>
+        </li>
+    </ul>
 </th:block>
 </html>

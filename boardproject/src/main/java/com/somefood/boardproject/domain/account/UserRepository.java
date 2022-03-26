@@ -1,6 +1,6 @@
-package com.somefood.boardproject.repository;
+package com.somefood.boardproject.domain.account;
 
-import com.somefood.boardproject.domain.Account;
+import com.somefood.boardproject.domain.account.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 

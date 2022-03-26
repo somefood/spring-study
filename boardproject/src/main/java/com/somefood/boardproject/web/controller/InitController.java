@@ -1,7 +1,11 @@
-package com.somefood.boardproject.controller;
+package com.somefood.boardproject.web.controller;
 
-import com.somefood.boardproject.domain.*;
-import com.somefood.boardproject.repository.UserRepository;
+import com.somefood.boardproject.domain.account.Account;
+import com.somefood.boardproject.domain.account.RoleType;
+import com.somefood.boardproject.domain.board.Board;
+import com.somefood.boardproject.domain.category.Category;
+import com.somefood.boardproject.domain.category.CategoryType;
+import com.somefood.boardproject.domain.account.UserRepository;
 import com.somefood.boardproject.service.BoardService;
 import com.somefood.boardproject.service.CategoryService;
 import lombok.RequiredArgsConstructor;
@@ -37,12 +41,12 @@ public class InitController {
         userRepository.save(account1);
         userRepository.save(account2);
 
-        Category category1 = Category.builder().type(CategoryType.FREE).build();
-        Category category2 = Category.builder().type(CategoryType.NOTICE).build();
-        Category category3 = Category.builder().type(CategoryType.QUESTION).build();
-        Board board1 = Board.builder().title("하이1").content("바이1").category(category1).account(account1).build();
-        Board board2 = Board.builder().title("하이2").content("바이2").category(category2).account(account1).build();
-        Board board3 = Board.builder().title("하이3").content("바이3").category(category3).account(account2).build();
+        Category category1 = Category.builder().type(CategoryType.NOTICE).color("#1f9dfe").description("공지입니다.").build();
+        Category category2 = Category.builder().type(CategoryType.FREE).color("#fe9a1f").description("자유글입니다.").build();
+        Category category3 = Category.builder().type(CategoryType.QUESTION).color("#1ffea9").description("질문글입니다.").build();
+        Board board1 = Board.builder().title("공지1").content("공지입니다.").category(category1).account(account1).build();
+        Board board2 = Board.builder().title("자유1").content("자유글입니다.").category(category2).account(account1).build();
+        Board board3 = Board.builder().title("질문1").content("질문글입니다.").category(category3).account(account2).build();
 
         categoryService.createCategory(category1);
         categoryService.createCategory(category2);

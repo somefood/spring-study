@@ -1,7 +1,7 @@
 package com.somefood.boardproject.security.service;
 
-import com.somefood.boardproject.domain.Account;
-import com.somefood.boardproject.repository.UserRepository;
+import com.somefood.boardproject.domain.account.Account;
+import com.somefood.boardproject.domain.account.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

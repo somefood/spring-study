@@ -1,7 +1,7 @@
 package com.somefood.boardproject.service.impl;
 
-import com.somefood.boardproject.domain.Category;
-import com.somefood.boardproject.domain.CategoryType;
+import com.somefood.boardproject.domain.category.Category;
+import com.somefood.boardproject.domain.category.CategoryType;
 import com.somefood.boardproject.service.CategoryService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

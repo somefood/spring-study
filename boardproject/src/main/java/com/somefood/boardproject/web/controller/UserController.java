@@ -1,9 +1,9 @@
-package com.somefood.boardproject.controller;
+package com.somefood.boardproject.web.controller;
 
-import com.somefood.boardproject.domain.Account;
-import com.somefood.boardproject.global.dto.AccountDto;
-import com.somefood.boardproject.domain.RoleType;
+import com.somefood.boardproject.domain.account.Account;
 import com.somefood.boardproject.service.UserService;
+import com.somefood.boardproject.web.dto.AccountDto;
+import com.somefood.boardproject.domain.account.RoleType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
