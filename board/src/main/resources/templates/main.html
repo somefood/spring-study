@@ -4,10 +4,20 @@
       layout:decorate="layout/default_layout">>
 
 <th:block layout:fragment="content">
-    <div class="row">
-        <div class="col-3" th:each="category : ${categories}" th:object="${category}">
-            <a href="" th:href="@{/board(type=*{type})}" th:text="*{type.title}">카테고리 목록</a>
+    <section class="community-header" style="background-color: whitesmoke">
+        <div class="container" style="padding: 10px 0;">
+            <div class="community-extra-area d-flex justify-content-between">
+                <a th:each="category : ${categories}" th:object="${category}"
+                   href="" th:href="@{/board(type=*{type})}"
+                   th:style="|background-color: *{color}|"
+                   class="extra-section">
+                    <div class="section-title">
+                        <h3 th:text="*{type.korean}">타입</h3>
+                        <span th:text="*{description}">설명</span>
+                    </div>
+                </a>
+            </div>
         </div>
-    </div>
+    </section>
 </th:block>
 </html>

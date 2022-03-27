@@ -20,9 +20,9 @@ public class DataInit {
 
     @PostConstruct
     public void init() {
-        Category category1 = Category.builder().type(CategoryType.NOTICE).build();
-        Category category2 = Category.builder().type(CategoryType.FREE).build();
-        Category category3 = Category.builder().type(CategoryType.QUESTION).build();
+        Category category1 = Category.builder().type(CategoryType.NOTICE).color("#1f9dfe").description("공지입니다.").build();
+        Category category2 = Category.builder().type(CategoryType.FREE).color("#fe9a1f").description("자유글입니다.").build();
+        Category category3 = Category.builder().type(CategoryType.QUESTION).color("#1ffea9").description("질문글입니다.").build();
 
         BoardDto boardDto1 = BoardDto.builder().title("공지1").content("공지입니다.").build();
         BoardDto boardDto2 = BoardDto.builder().title("자유1").content("자유게시판입니다.").build();

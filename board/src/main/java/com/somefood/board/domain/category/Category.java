@@ -22,11 +22,16 @@ public class Category {
     @Enumerated(EnumType.STRING)
     private CategoryType type;
 
+    private String description;
+    private String color;
+
     @OneToMany(mappedBy = "category")
     private List<Board> boards = new ArrayList<>();
 
     @Builder
-    public Category(CategoryType type) {
+    public Category(CategoryType type, String description, String color) {
         this.type = type;
+        this.description = description;
+        this.color = color;
     }
 }

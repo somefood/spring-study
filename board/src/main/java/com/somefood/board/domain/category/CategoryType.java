@@ -7,9 +7,10 @@ import lombok.RequiredArgsConstructor;
 @Getter
 public enum CategoryType {
 
-    NOTICE("공지사항"),
-    FREE("자유게시판"),
-    QUESTION("질문게시판");
+    NOTICE("notice", "공지"),
+    QUESTION("question", "질문"),
+    FREE("free", "자유");
 
-    private final String title;
+    private final String type;
+    private final String korean;
 }
