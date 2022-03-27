@@ -40,6 +40,11 @@ public class Board extends BaseTimeEntity {
         this.content = content;
         this.category = category;
     }
+
+    public void update(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 }
 
 

@@ -35,6 +35,15 @@ public class BoardService {
         return boardRepository.save(board);
     }
 
+    @Transactional
+    public Long update(Long id, BoardDto boardDto) {
+        Board board = boardRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
+        board.update(boardDto.getTitle(), boardDto.getContent());
+
+        return id;
+    }
+
     public Optional<Board> findBoard(Long id) {
         return boardRepository.findById(id);
     }

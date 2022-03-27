@@ -1,18 +1,15 @@
 package com.somefood.board.web.controller;
 
 import com.somefood.board.domain.board.Board;
-import com.somefood.board.domain.category.Category;
 import com.somefood.board.domain.category.CategoryType;
 import com.somefood.board.service.BoardService;
 import com.somefood.board.web.dto.BoardDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,14 +25,14 @@ public class BoardController {
     public String boardList(@RequestParam(value = "type", required = false) CategoryType type, Model model) {
         List<Board> boards = boardService.findBoardList(type);
         model.addAttribute("boards", boards);
-        return "board/items";
+        return "board/board_list";
     }
 
     @GetMapping("/{boardId}")
     public String boardDetails(@PathVariable Long boardId, Model model) {
         Optional<Board> board = boardService.findBoard(boardId);
         board.ifPresent(value -> model.addAttribute("board", value));
-        return "board/item";
+        return "board/board";
     }
 
     @GetMapping("/add-form")
@@ -51,10 +48,22 @@ public class BoardController {
         return "redirect:/board";
     }
 
-    @DeleteMapping("/{boardId}")
-    @ResponseBody
+    @GetMapping("/{boardId}/edit")
+    public String boardEdit(@PathVariable Long boardId, Model model) {
+        Optional<Board> board = boardService.findBoard(boardId);
+        board.ifPresent(value -> model.addAttribute("board", value));
+        return "board/editForm";
+    }
+
+    @PostMapping("/{boardId}/edit")
+    public String boardUpdate(@PathVariable Long boardId, @ModelAttribute BoardDto boardDto) {
+        Long id = boardService.update(boardId, boardDto);
+        return "redirect:/board/" + id;
+    }
+
+    @GetMapping("/{boardId}/delete")
     public String boardRemove(@PathVariable Long boardId) {
         boardService.removeBoard(boardId);
-        return "ok";
+        return "redirect:/board";
     }
 }

@@ -573,3 +573,42 @@ footer.footer .language-copyrights small{
 .tag-4 {font-size: 18px;}
 .tag-5 {font-size: 20px;}
 .tag-6 {font-size: 24px;}
+
+/* 커뮤니티 시작 */
+/* community - 커뮤니티 */
+.community-extra-area *{
+    color: white !important;
+}
+
+.community-extra-area .extra-section {
+    width:25%;
+    position: relative;
+    display: block;
+    height: 210px;
+    margin-right: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px 0 rgb(150 153 159 / 50%);
+}
+
+.extra-section .section-title {
+    position: relative;
+    margin: 20px 20px 0;
+}
+
+.category-list {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+ul.category-list li {
+    display: inline-block;
+}
+
+ul.category-list li.active {
+    font-weight: bold;
+}
+/* 커뮤니티 끝 */

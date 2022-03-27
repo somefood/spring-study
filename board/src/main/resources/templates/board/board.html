@@ -4,6 +4,12 @@
       layout:decorate="layout/default_layout">>
 
 <th:block layout:fragment="content">
+    <button class="btn btn-primary mb-3 p-2"
+            th:onclick="|location.href='@{/board/{boardId}/edit(boardId=${board.id})}'|">수정
+    </button>
+    <button class="btn btn-primary mb-3 p-2"
+            th:onclick="|location.href='@{/board/{boardId}/delete(boardId=${board.id})}'|">삭제
+    </button>
     <div class="board">
         <div class="row board-header">
             <div class="col-sm-12">
