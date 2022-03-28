@@ -21,7 +21,9 @@
                 <tbody>
 
                 <tr th:each="board: ${boards}">
-                    <td><a class="text-dark text-truncate" href="#" th:href="@{/board/{itemId}(itemId=${board.id})}" th:text="${board.title}">text</a>(댓글영역)</td>
+                    <td><a class="text-dark text-truncate" href="#" th:href="@{/board/{itemId}(itemId=${board.id})}" th:text="${board.title}">text</a>
+                        <span th:text="${#lists.size(board.comments)}">댓글개수</span>
+                    </td>
                     <td class="author" th:text="author">미소여우</td>
                     <td class="text-primary voteNum">0</td>
                     <td class="time" th:text="${board.createdDate}">2020년 7월 7일</td>

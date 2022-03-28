@@ -5,7 +5,10 @@ import com.somefood.board.domain.board.BoardRepository;
 import com.somefood.board.domain.category.Category;
 import com.somefood.board.domain.category.CategoryRepository;
 import com.somefood.board.domain.category.CategoryType;
+import com.somefood.board.domain.comment.Comment;
+import com.somefood.board.domain.comment.CommentRepository;
 import com.somefood.board.web.dto.BoardDto;
+import com.somefood.board.web.dto.CommentDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +20,7 @@ public class DataInit {
 
     private final CategoryRepository categoryRepository;
     private final BoardRepository boardRepository;
+    private final CommentRepository commentRepository;
 
     @PostConstruct
     public void init() {
@@ -36,6 +40,18 @@ public class DataInit {
         board2.setCategory(category2);
         board3.setCategory(category3);
 
+        CommentDto commentDto1 = CommentDto.builder().content("댓글1").build();
+        CommentDto commentDto2 = CommentDto.builder().content("댓글2").build();
+        CommentDto commentDto3 = CommentDto.builder().content("댓글3").build();
+
+        Comment comment1 = commentDto1.toEntity();
+        Comment comment2 = commentDto1.toEntity();
+        Comment comment3 = commentDto1.toEntity();
+
+        comment1.setBoard(board1);
+        comment2.setBoard(board2);
+        comment3.setBoard(board3);
+
         categoryRepository.save(category1);
         categoryRepository.save(category2);
         categoryRepository.save(category3);
@@ -43,6 +59,9 @@ public class DataInit {
         boardRepository.save(board1);
         boardRepository.save(board2);
         boardRepository.save(board3);
-    }
 
+        commentRepository.save(comment1);
+        commentRepository.save(comment2);
+        commentRepository.save(comment3);
+    }
 }

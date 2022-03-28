@@ -3,9 +3,7 @@ package com.somefood.boardproject.domain.board;
 import com.somefood.boardproject.domain.BaseEntityTime;
 import com.somefood.boardproject.domain.category.Category;
 import com.somefood.boardproject.domain.account.Account;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 

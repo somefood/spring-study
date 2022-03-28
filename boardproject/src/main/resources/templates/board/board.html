@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="layout/default_layout"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+      layout:decorate="layout/default_layout">>
 
-<th:block layout:fragment="content" th:object="${board}">
-    <button class="btn btn-primary mb-3 p-2">수정</button>
-    <button class="btn btn-primary mb-3 p-2">삭제</button>
+<th:block layout:fragment="content">
+    <button class="btn btn-primary mb-3 p-2"
+            th:onclick="|location.href='@{/board/{boardId}/edit(boardId=${board.id})}'|">수정
+    </button>
+    <button class="btn btn-primary mb-3 p-2"
+            th:onclick="|location.href='@{/board/{boardId}/delete(boardId=${board.id})}'|">삭제
+    </button>
     <div class="board">
         <div class="row board-header">
             <div class="col-sm-12">
                 <div class="float-end text-center">
-                    <button th:post-id="*{id}" post-id="9" class="btn userboard-like">
+                    <button th:post-id="${board.id}" post-id="9" class="btn userboard-like">
 
                         <i id="like-heart-9" class="far fa-heart fa-2x" aria-hidden="true"></i></button>
 
@@ -19,17 +22,17 @@
                     <span id="count-9">1개</span>
                     <span id="like-user-9"></span>
                 </div>
-                <div class="h3" th:text="*{title}"></div>
+                <div class="h3" th:text="${board.title}"></div>
             </div>
             <div class="col-sm-12">
                 <div class="writer-info">
                     <div class="profile-area">
                         <div class="profile-info">
                             <div class="nick-box" th:text="abc">
-                                작성자
+                                미소여우
                             </div>
-                            <div class="board-info" th:text="*{createdDate}">
-                                생성 날짜
+                            <div class="board-info" th:text="${board.createdDate}">
+                                2020.07.07 09:27
                             </div>
                         </div>
                     </div>
@@ -38,7 +41,7 @@
         </div>
         <div class="row board-body">
             <div class="col-md-11">
-                <p th:text="*{content}">안녕하세요.</p>
+                <p th:utext="${board.content}">안녕하세요.</p>
             </div>
         </div>
         <div class="row mt-3 body-footer">
