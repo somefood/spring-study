@@ -7,12 +7,16 @@ import com.somefood.board.domain.category.CategoryRepository;
 import com.somefood.board.domain.category.CategoryType;
 import com.somefood.board.web.dto.BoardDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 @Service
@@ -52,6 +56,20 @@ public class BoardService {
         if (categoryType == null) return boardRepository.findAll();
         Category category = categoryService.findCategoryByType(categoryType);
         return boardRepository.findAllByCategory(category);
+    }
+
+    public Page<Board> findPage(Pageable pageable) {
+
+        int pageSize = pageable.getPageSize();
+        int currentPage = pageable.getPageNumber();
+        int startItem = currentPage * pageSize;
+
+        log.info("pageSize={}", pageSize);
+        log.info("currentPage={}", currentPage);
+        log.info("startItem={}", startItem);
+
+        Page<Board> all = boardRepository.findAll(pageable);
+        return all;
     }
 
     @Transactional

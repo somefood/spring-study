@@ -6,6 +6,10 @@ import com.somefood.board.service.BoardService;
 import com.somefood.board.web.dto.BoardDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,9 +26,14 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping
-    public String boardList(@RequestParam(value = "type", required = false) CategoryType type, Model model) {
-        List<Board> boards = boardService.findBoardList(type);
-        model.addAttribute("boards", boards);
+    public String boardList(Model model, @PageableDefault Pageable pageable) {
+
+        log.info("[GET] boardPage");
+
+        Page<Board> findBoards = boardService.findPage(pageable);
+
+        model.addAttribute("boards", findBoards);
+
         return "board/board_list";
     }
 
@@ -45,7 +54,7 @@ public class BoardController {
     public String boardAdd(@ModelAttribute BoardDto boardDto) {
         log.info(boardDto.getTitle(), boardDto.getContent(), boardDto.getCategoryType());
         Board saved = boardService.createBoard(boardDto);
-        return "redirect:/board";
+        return "redirect:/board/" + saved.getId();
     }
 
     @GetMapping("/{boardId}/edit")

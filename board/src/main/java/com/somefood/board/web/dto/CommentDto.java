@@ -9,18 +9,15 @@ import lombok.Data;
 public class CommentDto {
 
     private String content;
-    private Board board;
 
     @Builder
-    public CommentDto(String content, Board board) {
+    public CommentDto(String content) {
         this.content = content;
-        this.board = board;
     }
 
     public Comment toEntity() {
         return Comment.builder()
                 .content(getContent())
-                .board(getBoard())
                 .build();
     }
 }

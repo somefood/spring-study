@@ -46,9 +46,9 @@
         </div>
         <div class="row mt-3 body-footer">
             <div class="col-12">
-                <form action="" method="post" id="multiForm">
+                <form action="" th:action="@{/comment/{boardId}(boardId=${board.id})}" method="post" id="multiForm">
                     <div class="form-group">
-                        <textarea name="text" cols="40" rows="3" class="form-control" id="inputComment" style="resize:none;" required=""></textarea>
+                        <textarea name="content" cols="40" rows="3" class="form-control" style="resize:none;" required=""></textarea>
                     </div>
                     <input id="writeComment" type="submit" value="작성" class="btn btn-primary">
                 </form>
