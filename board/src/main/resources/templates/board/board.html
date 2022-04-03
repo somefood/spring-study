@@ -56,7 +56,7 @@
             <div class="col-12">
                 <div class="comment-wrapper">
                     <div class="comment-list">
-                        <div class="comment-area" id="1" th:each="comment : ${board.comments}">
+                        <div class="comment-area" id="" th:each="comment : ${board.comments}" th:id="${comment.id}">
                             <div class="comment-box">
                                 <div class="comment-nick-box"><a class="comment-nickname" href="#">작성자</a></div>
                                 <div class="comment-text-box">
@@ -66,6 +66,8 @@
                                 </div>
                                 <div class="comment-info-box" th:text="${comment.createdDate}">날짜</div>
                                 <div class="comment_tool">
+                                    <a href="javascript:void(0)" class="update-comment">수정</a>
+                                    <a href="javascript:void(0)" class="delete-comment" onclick="deleteComment(this)">삭제</a>
                                 </div>
                             </div>
                         </div>
