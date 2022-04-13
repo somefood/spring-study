@@ -28,7 +28,7 @@
                 <div class="writer-info">
                     <div class="profile-area">
                         <div class="profile-info">
-                            <div class="nick-box" th:text="abc">
+                            <div class="nick-box" th:text="${board.writer.username}">
                                 미소여우
                             </div>
                             <div class="board-info" th:text="${board.createdDate}">
@@ -58,7 +58,7 @@
                     <div class="comment-list">
                         <div class="comment-area" id="" th:each="comment : ${board.comments}" th:id="${comment.id}">
                             <div class="comment-box">
-                                <div class="comment-nick-box"><a class="comment-nickname" href="#">작성자</a></div>
+                                <div class="comment-nick-box"><a class="comment-nickname" th:text="${comment.writer.username}" href="#">작성자</a></div>
                                 <div class="comment-text-box">
                                     <p class="comment-text-view">
                                         <span class="text-comment" th:text="${comment.content}">댓글</span>

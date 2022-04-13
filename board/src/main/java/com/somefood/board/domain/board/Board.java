@@ -3,6 +3,7 @@ package com.somefood.board.domain.board;
 import com.somefood.board.domain.BaseTimeEntity;
 import com.somefood.board.domain.category.Category;
 import com.somefood.board.domain.comment.Comment;
+import com.somefood.board.domain.user.Account;
 import lombok.*;
 
 import javax.persistence.*;
@@ -29,8 +30,12 @@ public class Board extends BaseTimeEntity {
     private Category category;
 
     @ToString.Exclude
-    @OneToMany(mappedBy = "board")
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Comment> comments = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private Account writer;
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
@@ -42,6 +47,11 @@ public class Board extends BaseTimeEntity {
         }
         this.category = category;
         category.getBoards().add(this);
+    }
+
+    public void setWriter(Account account) {
+        this.writer = account;
+        account.getBoards().add(this);
     }
 
     @Builder

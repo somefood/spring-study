@@ -1,10 +1,12 @@
 package com.somefood.board.domain.user;
 
+import com.somefood.board.domain.board.Board;
+import com.somefood.board.domain.comment.Comment;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -13,11 +15,18 @@ public class Account {
 
     @Id
     @GeneratedValue
+    @Column(name = "user_id")
     private Long id;
 
     private String username;
     private String password;
     private String role;
+
+    @OneToMany(mappedBy = "writer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Board> boards = new ArrayList<>();
+
+    @OneToMany(mappedBy = "writer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
 
     @Builder
     public Account(String username, String password, String role) {
