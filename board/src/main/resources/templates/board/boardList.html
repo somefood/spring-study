@@ -62,29 +62,29 @@
                 th:with="start=${T(Math).floor(boards.number/10)*10 + 1},
                     last=(${start + 9 < boards.totalPages ? start + 9 : boards.totalPages})">
                 <li>
-                    <a th:href="@{/board(page=1)}" aria-label="First">
+                    <a th:href="@{${#httpServletRequest.requestURI}(page=1)}" aria-label="First">
                         <span aria-hidden="true">First</span>
                     </a>
                 </li>
 
                 <li th:class="${boards.first} ? 'disabled'">
-                    <a th:href="${boards.first} ? '#' :@{/board(page=${boards.number})}" aria-label="Previous">
+                    <a th:href="${boards.first} ? '#' :@{${#httpServletRequest.requestURI}(page=${boards.number})}" aria-label="Previous">
                         <span aria-hidden="true">&lt;</span>
                     </a>
                 </li>
 
                 <li th:each="page: ${#numbers.sequence(start, last)}" th:class="${page == boards.number + 1} ? 'active'">
-                    <a th:text="${page}" th:href="@{/board(page=${page})}"></a>
+                    <a th:text="${page}" th:href="@{${#httpServletRequest.requestURI}(page=${page})}"></a>
                 </li>
 
                 <li th:class="${boards.last} ? 'disabled'">
-                    <a th:href="${boards.last} ? '#' : @{/board(page=${boards.number + 2})}" aria-label="Next">
+                    <a th:href="${boards.last} ? '#' : @{${#httpServletRequest.requestURI}(page=${boards.number + 2})}" aria-label="Next">
                         <span aria-hidden="true">&gt;</span>
                     </a>
                 </li>
 
                 <li>
-                    <a th:href="@{/board(page=${boards.totalPages})}" aria-label="Last">
+                    <a th:href="@{${#httpServletRequest.requestURI}(page=${boards.totalPages})}" aria-label="Last">
                         <span aria-hidden="true">Last</span>
                     </a>
                 </li>

@@ -8,7 +8,7 @@
         <div class="container" style="padding: 10px 0;">
             <div class="community-extra-area d-flex justify-content-between">
                 <a th:each="category : ${categories}" th:object="${category}"
-                   href="" th:href="@{/board(type=*{type})}"
+                   href="" th:href="@{|/category/*{type}|}"
                    th:style="|background-color: *{color}|"
                    class="extra-section">
                     <div class="section-title">

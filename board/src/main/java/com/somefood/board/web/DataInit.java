@@ -45,7 +45,7 @@ public class DataInit {
 
 
         for (int i=0; i<50; i++) {
-            Board board = Board.builder().title("제목 " + i).content("내용 " + i).build();
+            Board board = Board.builder().title(categories[i%3].getType() + " 제목 " + i).content("내용 " + i).build();
             board.setCategory(categories[i%3]);
             board.setWriter(accounts[i%2]);
             boardRepository.save(board);

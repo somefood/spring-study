@@ -52,12 +52,6 @@ public class BoardService {
         return boardRepository.findById(id);
     }
 
-    public List<Board> findBoardList(CategoryType categoryType) {
-        if (categoryType == null) return boardRepository.findAll();
-        Category category = categoryService.findCategoryByType(categoryType);
-        return boardRepository.findAllByCategory(category);
-    }
-
     public Page<Board> findPage(Pageable pageable) {
 
         int pageSize = pageable.getPageSize();
@@ -72,15 +66,32 @@ public class BoardService {
         return all;
     }
 
+    public Page<Board> findPage(CategoryType type, Pageable pageable) {
+
+        int pageSize = pageable.getPageSize();
+        int currentPage = pageable.getPageNumber();
+        int startItem = currentPage * pageSize;
+
+        log.info("pageSize={}", pageSize);
+        log.info("currentPage={}", currentPage);
+        log.info("startItem={}", startItem);
+
+        Category findCategory = categoryService.findCategoryByType(type);
+
+        return boardRepository.findAllByCategory(findCategory, pageable);
+    }
+
     @Transactional
     public Board modifyBoard(Board board) {
         return boardRepository.save(board);
     }
 
     @Transactional
-    public void removeBoard(Long id) {
+    public CategoryType removeBoard(Long id) {
         Board board = findBoard(id).orElseGet(null);
+        Category category = board.getCategory();
         boardRepository.delete(board);
+        return category.getType();
     }
 
 //    public Board findByName(String name) {}

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,18 +25,6 @@ import java.util.Optional;
 public class BoardController {
 
     private final BoardService boardService;
-
-    @GetMapping
-    public String boardList(Model model, @PageableDefault Pageable pageable) {
-
-        log.info("[GET] boardPage");
-
-        Page<Board> findBoards = boardService.findPage(pageable);
-
-        model.addAttribute("boards", findBoards);
-
-        return "board/board_list";
-    }
 
     @GetMapping("/{boardId}")
     public String boardDetails(@PathVariable Long boardId, Model model) {
@@ -72,7 +61,8 @@ public class BoardController {
 
     @GetMapping("/{boardId}/delete")
     public String boardRemove(@PathVariable Long boardId) {
-        boardService.removeBoard(boardId);
-        return "redirect:/board";
+        CategoryType categoryType = boardService.removeBoard(boardId);
+
+        return "redirect:/category/" + categoryType ;
     }
 }

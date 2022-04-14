@@ -8,11 +8,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
+
 @NoArgsConstructor
 @Data
 public class BoardDto {
 
+    @NotBlank
     private String title;
+
+    @NotBlank
     private String content;
     private CategoryType categoryType;
 
