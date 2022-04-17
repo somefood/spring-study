@@ -51,7 +51,7 @@ public class Board extends BaseTimeEntity {
 
     public void setWriter(Account account) {
         this.writer = account;
-        account.getBoards().add(this);
+//        account.getBoards().add(this);
     }
 
     @Builder

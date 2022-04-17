@@ -5,11 +5,14 @@ import com.somefood.board.domain.board.BoardRepository;
 import com.somefood.board.domain.category.Category;
 import com.somefood.board.domain.category.CategoryRepository;
 import com.somefood.board.domain.category.CategoryType;
+import com.somefood.board.domain.user.Account;
+import com.somefood.board.domain.user.UserRepository;
 import com.somefood.board.web.dto.BoardDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +28,7 @@ public class BoardService {
     private final BoardRepository boardRepository;
     private final CategoryService categoryService;
     private final CategoryRepository categoryRepository;
+    private final UserRepository userRepository;
 
     @Transactional
     public Board createBoard(Board board) {
@@ -32,11 +36,13 @@ public class BoardService {
     }
 
     @Transactional
-    public Board createBoard(BoardDto boardDto) {
-        Board board = boardDto.toEntity();
+    public Board createBoard(BoardDto boardDto, Authentication authentication) {
+        Board board = boardRepository.save(boardDto.toEntity());
         Category category = categoryRepository.findByType(boardDto.getCategoryType());
+        Account account = (Account) authentication.getPrincipal();
         board.setCategory(category);
-        return boardRepository.save(board);
+        board.setWriter(account);
+        return board;
     }
 
     @Transactional

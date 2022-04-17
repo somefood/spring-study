@@ -4,6 +4,7 @@ import com.somefood.board.domain.BaseTimeEntity;
 import com.somefood.board.domain.board.Board;
 import com.somefood.board.domain.category.Category;
 import com.somefood.board.domain.user.Account;
+import com.somefood.board.web.dto.CommentDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -46,5 +47,9 @@ public class Comment extends BaseTimeEntity {
     public Comment(String content, Board board) {
         this.content = content;
         this.board = board;
+    }
+
+    public void update(CommentDto commentDto) {
+        content = commentDto.getContent();
     }
 }

@@ -42,12 +42,12 @@ public class Config extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/user/**", "/", "/category/**", "/board/**").permitAll()
                 .anyRequest().authenticated()
-                .and()
+            .and()
                 .formLogin()
-                .loginProcessingUrl("/user/login_proc")
                 .loginPage("/user/login")
+                .loginProcessingUrl("/user/login_proc")
                 .defaultSuccessUrl("/")
-                .and()
+            .and()
                 .logout()
                 .logoutUrl("/user/logout");
     }

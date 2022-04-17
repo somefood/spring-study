@@ -6,6 +6,7 @@ import com.somefood.board.service.BoardService;
 import com.somefood.board.service.CommentService;
 import com.somefood.board.web.dto.CommentDto;
 import com.somefood.board.web.dto.ajax.CommentDeleteDto;
+import com.somefood.board.web.dto.ajax.CommentUpdateDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -22,7 +23,15 @@ public class CommentController {
     private final BoardService boardService;
     private final CommentService commentService;
 
-    @GetMapping("/{commentId}/delete")
+    @ResponseBody
+    @PostMapping("/update/{commentId}")
+    public CommentUpdateDto commentEdit(@PathVariable Long commentId, CommentDto commentDto) {
+        log.info("comment update {} {}", commentId, commentDto);
+        commentService.update(commentId, commentDto);
+        return new CommentUpdateDto(true);
+    }
+
+    @GetMapping("/delete/{commentId}")
     @ResponseBody
     public CommentDeleteDto commentAdd(@PathVariable Long commentId) {
 

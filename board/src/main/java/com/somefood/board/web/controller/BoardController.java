@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -40,9 +41,10 @@ public class BoardController {
     }
 
     @PostMapping("/add-form")
-    public String boardAdd(@ModelAttribute BoardDto boardDto) {
-        log.info(boardDto.getTitle(), boardDto.getContent(), boardDto.getCategoryType());
-        Board saved = boardService.createBoard(boardDto);
+    public String boardAdd(@ModelAttribute BoardDto boardDto, Authentication authentication) {
+        log.info("boardAdd {}", boardDto);
+        log.info("boardAdd Authentication {}", authentication);
+        Board saved = boardService.createBoard(boardDto, authentication);
         return "redirect:/board/" + saved.getId();
     }
 
