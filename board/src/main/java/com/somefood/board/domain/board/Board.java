@@ -3,6 +3,8 @@ package com.somefood.board.domain.board;
 import com.somefood.board.domain.BaseTimeEntity;
 import com.somefood.board.domain.category.Category;
 import com.somefood.board.domain.comment.Comment;
+import com.somefood.board.domain.like.LikeStatus;
+import com.somefood.board.domain.like.Likes;
 import com.somefood.board.domain.user.Account;
 import lombok.*;
 
@@ -17,7 +19,8 @@ import java.util.List;
 @Entity
 public class Board extends BaseTimeEntity {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue
     private Long id;
     private String title;
 
@@ -35,7 +38,16 @@ public class Board extends BaseTimeEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
+    @ToString.Exclude
     private Account writer;
+
+    @OneToMany(mappedBy = "board")
+    @ToString.Exclude
+    private List<Likes> likes = new ArrayList<>();
+
+    public void setLikes(List<Likes> likes) {
+        this.likes = likes;
+    }
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
@@ -64,6 +76,19 @@ public class Board extends BaseTimeEntity {
     public void update(String title, String content) {
         this.title = title;
         this.content = content;
+    }
+
+    public int getLikeCount() {
+        int likeCount = 0;
+        int dislikeCount = 0;
+        for (Likes like : likes) {
+            if (like.getStatus() == LikeStatus.LIKE) {
+                likeCount++;
+            } else {
+                dislikeCount++;
+            }
+        }
+        return likeCount - dislikeCount;
     }
 }
 

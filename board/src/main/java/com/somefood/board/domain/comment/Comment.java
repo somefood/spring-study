@@ -10,6 +10,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -17,7 +19,7 @@ import javax.persistence.*;
 public class Comment extends BaseTimeEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
 
     private String content;
@@ -29,6 +31,23 @@ public class Comment extends BaseTimeEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private Account writer;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_id")
+    private Comment parent;
+
+    @OneToMany(mappedBy = "parent")
+    private List<Comment> child = new ArrayList<>();
+
+    public void addChildComment(Comment child) {
+        this.child.add(child);
+        child.setParent(this);
+    }
+
+    public void setParent(Comment parent) {
+        this.parent = parent;
+    }
 
     public void setBoard(Board board) {
         if (this.board != null) { // 기존에 이미 팀이 존재한다면

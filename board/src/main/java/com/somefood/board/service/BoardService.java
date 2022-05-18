@@ -5,9 +5,15 @@ import com.somefood.board.domain.board.BoardRepository;
 import com.somefood.board.domain.category.Category;
 import com.somefood.board.domain.category.CategoryRepository;
 import com.somefood.board.domain.category.CategoryType;
+import com.somefood.board.domain.like.LikeStatus;
+import com.somefood.board.domain.like.Likes;
+import com.somefood.board.domain.like.LikesRepository;
 import com.somefood.board.domain.user.Account;
 import com.somefood.board.domain.user.UserRepository;
+import com.somefood.board.web.dto.BasicResponseDto;
 import com.somefood.board.web.dto.BoardDto;
+import com.somefood.board.web.dto.LikeCountDto;
+import com.somefood.board.web.dto.request.VoteRequestDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -16,6 +22,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,6 +36,7 @@ public class BoardService {
     private final CategoryService categoryService;
     private final CategoryRepository categoryRepository;
     private final UserRepository userRepository;
+    private final LikesRepository likesRepository;
 
     @Transactional
     public Board createBoard(Board board) {
@@ -100,5 +108,54 @@ public class BoardService {
         return category.getType();
     }
 
-//    public Board findByName(String name) {}
+    public List<LikeCountDto> findLikeCount(Board board) {
+        return likesRepository.findLikeDislikeCount(board);
+    }
+
+    @Transactional
+    public BasicResponseDto<List<Long>> likeBoard(Long boardId, String username, VoteRequestDto vote) {
+        BasicResponseDto<List<Long>> responseDto;
+        List<Long> list = new ArrayList<>();
+        Board board = findBoard(boardId).get();
+        int code = 3;
+        String message = "선택되었습니다.";
+        boolean isAlreadyVote = false;
+
+        Account account = userRepository.findByUsername(username);
+        List<Likes> likes = likesRepository.findAllByBoard(board);
+
+        log.info("like service username={} board={}", account, board);
+
+        for (Likes like : likes) {
+            Account searchAccount = like.getAccount();
+
+            // 이미 있는 경우
+            if (searchAccount == account) {
+                isAlreadyVote = true;
+                code = 4;
+                message = "이미 선택했습니다.";
+                break;
+            }
+        }
+        log.info("service vote={}", vote);
+        if (!isAlreadyVote) {
+            Likes.LikesBuilder builder = Likes.builder();
+            if (vote.getStatus().equals("like")) {
+                builder.status(LikeStatus.LIKE);
+            } else {
+                builder.status(LikeStatus.DISLIKE);
+            }
+            Likes like = builder.build();
+            like.setAccountBoard(account, board);
+            likesRepository.save(like);
+        }
+
+        List<LikeCountDto> likeCount = findLikeCount(board);
+        for (LikeCountDto likeCountDto : likeCount) {
+            list.add(likeCountDto.getCount());
+        }
+
+        responseDto = new BasicResponseDto<>(code, message, list);
+        return responseDto;
+    }
 }

@@ -2,6 +2,7 @@ package com.somefood.board.domain.user;
 
 import com.somefood.board.domain.board.Board;
 import com.somefood.board.domain.comment.Comment;
+import com.somefood.board.domain.like.Likes;
 import lombok.*;
 
 import javax.persistence.*;
@@ -18,9 +19,13 @@ public class Account {
     @Column(name = "user_id")
     private Long id;
 
+    @Column(unique = true)
     private String username;
     private String password;
     private String role;
+
+    @OneToMany(mappedBy = "account")
+    private List<Likes> likes = new ArrayList<>();
 
     @OneToMany(mappedBy = "writer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Board> boards = new ArrayList<>();

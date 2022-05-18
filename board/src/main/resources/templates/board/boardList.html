@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col" id="pc">
             <div class="d-flex flex-row-reverse">
-                <a href="javascript:checkLogin(this)" class="btn btn-primary add-board">글쓰기</a>
+                <a href="javascript:createPost(this)" class="btn btn-primary add-board">글쓰기</a>
             </div>
             <table class="table board-table">
                 <thead>
@@ -25,7 +25,7 @@
                         <span th:text="${#lists.size(board.comments)}">댓글개수</span>
                     </td>
                     <td class="author" th:text="${board.writer.username}">미소여우</td>
-                    <td class="text-primary voteNum">0</td>
+                    <td class="text-primary voteNum" th:text="${board.likeCount}">0</td>
                     <td class="time" th:text="${board.createdDate}">2020년 7월 7일</td>
                 </tr>
                 </tbody>

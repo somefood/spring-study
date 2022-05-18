@@ -14,15 +14,6 @@
     <div class="board">
         <div class="row board-header">
             <div class="col-sm-12">
-                <div class="float-end text-center">
-                    <button th:post-id="${board.id}" post-id="9" class="btn userboard-like">
-
-                        <i id="like-heart-9" class="far fa-heart fa-2x" aria-hidden="true"></i></button>
-
-                    <br>
-                    <span id="count-9">1개</span>
-                    <span id="like-account-9"></span>
-                </div>
                 <div class="h3" th:text="${board.title}"></div>
             </div>
             <div class="col-sm-12">
@@ -43,6 +34,17 @@
         <div class="row board-body">
             <div class="col-md-11">
                 <p th:utext="${board.content}">안녕하세요.</p>
+            </div>
+            <div class="col-md-11 text-center">
+                <span class="vote">
+                    <th:block th:each="count: ${likeCount}" th:object="${count}">
+                        <button post-id="0" class="btn userboard-like" th:attr="data-status=*{likeStatus.english}">
+                            <i id="like-heart-9" class="far fa-heart fa-2x" aria-hidden="true" th:style="|color: *{likeStatus.color}|"></i>
+                            <span th:text="*{likeStatus.korea}"></span>
+                            <span class="like-count" th:text="|*{count}|"></span>
+                        </button>
+                    </th:block>
+                </span>
             </div>
         </div>
         <div class="row mt-3 body-footer">
@@ -66,6 +68,19 @@
                                     </p>
                                 </div>
                                 <div class="comment-info-box" th:text="${comment.createdDate}">날짜</div>
+                                <div class="comment_tool">
+                                    <a href="javascript:void(0)" class="update-comment">수정</a>
+                                    <a href="javascript:void(0)" class="delete-comment" onclick="deleteComment(this)">삭제</a>
+                                </div>
+                            </div>
+                            <div class="comment-box comment-child" th:each="childComment: ${comment.child}">
+                                <div class="comment-nick-box"><a class="comment-nickname" th:text="${childComment.writer.username}" href="#">작성자</a></div>
+                                <div class="comment-text-box">
+                                    <p class="comment-text-view">
+                                        <span class="text-comment" th:text="${childComment.content}">댓글</span>
+                                    </p>
+                                </div>
+                                <div class="comment-info-box" th:text="${childComment.createdDate}">날짜</div>
                                 <div class="comment_tool">
                                     <a href="javascript:void(0)" class="update-comment">수정</a>
                                     <a href="javascript:void(0)" class="delete-comment" onclick="deleteComment(this)">삭제</a>
