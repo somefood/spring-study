@@ -139,8 +139,8 @@ class MemoRepositoryTest {
         });
     }
 
-    @Commit
-    @Transactional
+//    @Commit
+//    @Transactional
     @Test
     void testDeleteQueryMethods() {
         memoRepository.deleteMemoByMnoLessThan(10L);
@@ -148,7 +148,7 @@ class MemoRepositoryTest {
 
     @Test
     void testQueryWithObject() {
-        Pageable pageable =PageRequest.of(0, 10);
+        Pageable pageable = PageRequest.of(0, 10);
 
         Page<Object[]> result = memoRepository.getListWithQueryObject(10L, pageable);
 
