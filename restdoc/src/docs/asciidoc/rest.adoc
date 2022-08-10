@@ -1,0 +1,29 @@
+= Spring REST Docs
+:toc: left
+:toclevels: 2
+:sectlinks:
+
+[[resources-post]]
+== Post
+
+[[resources-post-create]]
+=== Post 생성
+
+==== HTTP request
+
+include::{snippets}/post-create/http-request.adoc[]
+
+==== HTTP response
+
+include::{snippets}/post-create/http-response.adoc[]
+
+[[resources-post-get-all]]
+=== Post 전체 보기
+
+==== HTTP request
+
+include::{snippets}/post-get-all/http-request.adoc[]
+
+==== HTTP response
+
+include::{snippets}/post-get-all/http-response.adoc[]
