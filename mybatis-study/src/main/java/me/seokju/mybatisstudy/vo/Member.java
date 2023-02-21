@@ -1,8 +1,17 @@
 package me.seokju.mybatisstudy.vo;
 
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+
+@NoArgsConstructor
+@Entity
 public class Member {
 
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "member_id")
+    private Long member_id;
 
     private String name;
 
@@ -10,8 +19,8 @@ public class Member {
         this.name = name;
     }
 
-    public Long getId() {
-        return id;
+    public Long getMember_id() {
+        return member_id;
     }
 
     public String getName() {
